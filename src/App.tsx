@@ -4,6 +4,7 @@ import BarraBusqueda from "./components/BarraBusqueda/BarraBusqueda";
 import GrillaResultados from "./components/GrillaResultados/GrillaResultados";
 import styles from "./App.module.css";
 
+// Define la interfaz para los datos de un resultado multimedia
 interface Resultado {
   title: string;
   description: string;
@@ -11,6 +12,7 @@ interface Resultado {
   href: string;
 }
 
+// Componente principal de la aplicación
 const App: React.FC = () => {
   const [resultados, setResultados] = useState<Resultado[]>([]);
   const [pagina, setPagina] = useState(1);
@@ -18,6 +20,7 @@ const App: React.FC = () => {
   const [error, setError] = useState("");
   const [haBuscado, setHaBuscado] = useState(false);
 
+  // Maneja la búsqueda de resultados a partir de una consulta
   const manejarBusqueda = async (consulta: string) => {
     if (!consulta.trim()) {
       setError("Por favor, ingresa un término para buscar.");
@@ -40,7 +43,7 @@ const App: React.FC = () => {
           item.links?.find((link: any) => link.rel === "preview")?.href || "#",
       }));
       setResultados(resultadosFormateados);
-      setPagina(1);
+      setPagina(1); // Reinicia a la primera página
     } catch (error) {
       console.error("Error al buscar multimedia:", error);
       setError(
@@ -51,6 +54,7 @@ const App: React.FC = () => {
     }
   };
 
+  // Manejo de la paginación
   const manejarPagina = (incremento: number) => {
     const nuevaPagina = pagina + incremento;
     if (nuevaPagina < 1 || nuevaPagina > Math.ceil(resultados.length / 6))
@@ -58,6 +62,7 @@ const App: React.FC = () => {
     setPagina(nuevaPagina);
   };
 
+  // Obtiene los resultados para la página actual
   const resultadosPaginados = resultados.slice((pagina - 1) * 6, pagina * 6);
 
   return (
@@ -67,18 +72,18 @@ const App: React.FC = () => {
       </header>
       <BarraBusqueda onBuscar={manejarBusqueda} />
 
-      {/* Mostrar mensaje de error */}
+      {/* Muestra mensaje de error */}
       {error && <p className={styles.error}>{error}</p>}
 
-      {/* Mostrar mensaje "Cargando resultados" */}
+      {/* Muestra mensaje "Cargando resultados" */}
       {cargando && <p className={styles.loading}>Cargando resultados...</p>}
 
-      {/* Mostrar mensaje "No hay ningún resultado" solo después de buscar */}
+      {/* Muestra mensaje "No hay ningún resultado" solo después de buscar */}
       {haBuscado && !cargando && resultados.length === 0 && (
         <p className={styles.noResults}>No hay ningún resultado.</p>
       )}
 
-      {/* Mostrar resultados */}
+      {/* Muestra resultados */}
       {resultados.length > 0 && (
         <>
           <GrillaResultados resultados={resultadosPaginados} />
@@ -104,6 +109,22 @@ const App: React.FC = () => {
           </div>
         </>
       )}
+
+      {/* Aparece el footer solo si el usuario ha obtenido una respuesta con info */}
+      {haBuscado && resultados.length > 0 && (
+        <footer className={styles.footer}>
+          Realizado por{" "}
+          <a
+            href="https://github.com/jampibryan/buscador-multimedia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            JampiBryan
+          </a>
+        </footer>
+      )}
+
     </div>
   );
 };

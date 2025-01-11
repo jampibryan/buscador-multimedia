@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./GrillaResultados.module.css"; // Importa los estilos del archivo CSS module
 
+// Define la interfaz del tipo de datos de un resultado individual
 interface Resultado {
   title: string;
   description: string;
@@ -8,10 +9,12 @@ interface Resultado {
   href: string;
 }
 
+// Define la interfaz de las propiedades que el componente espera recibir
 interface PropsGrillaResultados {
   resultados: Resultado[];
 }
 
+// Componente funcional que renderiza una grilla de resultados multimedia
 const GrillaResultados: React.FC<PropsGrillaResultados> = ({ resultados }) => {
   return (
     <div className={styles.gridContainer}>
