@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Buscador Multimedia con React y la API de NASA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación React para buscar archivos multimedia utilizando la API pública de NASA. Implementa funcionalidades como búsqueda por título, una grilla responsiva para mostrar los resultados, y paginación para navegar entre los resultados obtenidos.
 
-Currently, two official plugins are available:
+## Características del Proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Búsqueda por título** de archivos multimedia proporcionados por la API de NASA.
+- **Visualización de resultados** en una grilla de 2 filas y 3 columnas.
+- **Paginación** para navegar entre los resultados.
+- **Manejo de estados de carga y errores.**
+- **Separación del código** en componentes con buenas prácticas y estilos modulares.
 
-## Expanding the ESLint configuration
+## Requisitos Previos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Antes de comenzar, asegúrate de tener instalado en tu sistema:
 
-- Configure the top-level `parserOptions` property like this:
+- **Node.js** (versión recomendada: 16 o superior)
+- **Git**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Instalación
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Sigue estos pasos para ejecutar el proyecto localmente:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clona el repositorio:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+  - Entra a CMD o a Git Bash y ejecuta el siguiente código:
+    git clone https://github.com/jampibryan/buscador-multimedia.git
+
+2. Accede al directorio del proyecto:
+  
+  cd buscador-multimedia
+
+3. Instala las dependencias:
+  
+  npm install
+
+4. Inicia el servidor de desarrollo:
+  
+  npm run dev
+
+5. Abre tu navegador
+  - Ingresa a esta ruta http://localhost:5175 para ver la aplicación.
+  - Dato: El puerto puede cambiar, eso puede depender de la configuración de tu entorno local.
+
+## Instalación
+
+  - Este proyecto está licenciado bajo la MIT License.
